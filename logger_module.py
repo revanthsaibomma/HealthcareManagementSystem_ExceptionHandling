@@ -32,3 +32,7 @@ def log_critical(message):
 def log_debug(message):
     """Log debug messages."""
     logging.debug(message)
+
+def log_exception(message):
+    """Log exception messages."""
+    logging.exception(message)

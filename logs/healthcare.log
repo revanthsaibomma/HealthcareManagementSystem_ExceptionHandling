@@ -9,3 +9,18 @@
 22-07-2026 21:29:38 | INFO | Doctor Added : 101
 22-07-2026 21:31:19 | INFO | Doctor Updated : 101
 22-07-2026 21:32:04 | INFO | Doctor Report Generated
+23-07-2026 00:12:23 | INFO | package: mysql.connector.plugins
+23-07-2026 00:12:23 | INFO | plugin_name: caching_sha2_password
+23-07-2026 00:12:23 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+23-07-2026 00:18:00 | INFO | package: mysql.connector.plugins
+23-07-2026 00:18:00 | INFO | plugin_name: caching_sha2_password
+23-07-2026 00:18:00 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+23-07-2026 00:18:11 | INFO | package: mysql.connector.plugins
+23-07-2026 00:18:11 | INFO | plugin_name: caching_sha2_password
+23-07-2026 00:18:11 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+23-07-2026 00:23:58 | INFO | package: mysql.connector.plugins
+23-07-2026 00:23:58 | INFO | plugin_name: caching_sha2_password
+23-07-2026 00:23:58 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+23-07-2026 00:29:10 | INFO | package: mysql.connector.plugins
+23-07-2026 00:29:10 | INFO | plugin_name: caching_sha2_password
+23-07-2026 00:29:10 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin

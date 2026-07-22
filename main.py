@@ -133,8 +133,7 @@ def main():
 
         print("\nREPORTS")
         print("20. Reports")
-
-        print("\n21. Exit")
+        print("21. Exit")
 
         choice = input("\nEnter Your Choice : ").strip()
 
