@@ -667,3 +667,4 @@ def cancel_appointment():
         cursor.close()
 
         connection.close()
+        
