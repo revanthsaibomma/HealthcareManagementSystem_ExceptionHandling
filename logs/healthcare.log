@@ -1,0 +1,11 @@
+22-07-2026 21:12:50 | INFO | package: mysql.connector.plugins
+22-07-2026 21:12:50 | INFO | plugin_name: caching_sha2_password
+22-07-2026 21:12:50 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+22-07-2026 21:13:37 | INFO | Patient Registered : 12
+22-07-2026 21:24:48 | INFO | package: mysql.connector.plugins
+22-07-2026 21:24:48 | INFO | plugin_name: caching_sha2_password
+22-07-2026 21:24:48 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+22-07-2026 21:25:22 | ERROR | Contact number must contain exactly 10 digits.
+22-07-2026 21:29:38 | INFO | Doctor Added : 101
+22-07-2026 21:31:19 | INFO | Doctor Updated : 101
+22-07-2026 21:32:04 | INFO | Doctor Report Generated

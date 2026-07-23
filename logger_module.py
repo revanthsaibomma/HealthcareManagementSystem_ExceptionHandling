@@ -1,16 +1,75 @@
 import logging
+import os
+from datetime import datetime
 
-logger = logging.getLogger("HealthcareManagementSystem")
-logger.setLevel(logging.INFO)
+APPLICATION_LOG_DIR = "logs/application_logs"
+EXCEPTION_LOG_DIR = "logs/exception_logs"
 
-if not logger.handlers:
+os.makedirs(APPLICATION_LOG_DIR, exist_ok=True)
+os.makedirs(EXCEPTION_LOG_DIR, exist_ok=True)
 
-    file_handler = logging.FileHandler("healthcare.log")
-    file_handler.setLevel(logging.INFO)
+today = datetime.now().strftime("%Y-%m-%d")
 
-    formatter = logging.Formatter(
-        "%(asctime)s | %(levelname)s | %(message)s"
+application_log_file = os.path.join(
+    APPLICATION_LOG_DIR,
+    f"{today}.log"
+)
+
+exception_log_file = os.path.join(
+    EXCEPTION_LOG_DIR,
+    f"{today}.log"
+)
+
+formatter = logging.Formatter(
+    "%(asctime)s | %(levelname)s | %(message)s",
+    "%d-%m-%Y %H:%M:%S"
+)
+
+application_logger = logging.getLogger("ApplicationLogger")
+application_logger.setLevel(logging.INFO)
+application_logger.propagate = False
+
+if not application_logger.handlers:
+
+    app_handler = logging.FileHandler(
+        application_log_file,
+        encoding="utf-8"
     )
 
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+    app_handler.setFormatter(formatter)
+
+    application_logger.addHandler(app_handler)
+
+exception_logger = logging.getLogger("ExceptionLogger")
+exception_logger.setLevel(logging.ERROR)
+exception_logger.propagate = False
+
+if not exception_logger.handlers:
+
+    exception_handler = logging.FileHandler(
+        exception_log_file,
+        encoding="utf-8"
+    )
+
+    exception_handler.setFormatter(formatter)
+
+    exception_logger.addHandler(exception_handler)
+
+def log_application(message):
+    application_logger.info(message)
+
+
+def log_warning(message):
+    application_logger.warning(message)
+
+
+def log_debug(message):
+    application_logger.debug(message)
+
+
+def log_exception(message):
+    exception_logger.error(message)
+
+
+def log_critical(message):
+    exception_logger.critical(message)
