@@ -2,15 +2,11 @@ import logging
 import os
 from datetime import datetime
 
-# Create Log Directories
-
 APPLICATION_LOG_DIR = "logs/application_logs"
 EXCEPTION_LOG_DIR = "logs/exception_logs"
 
 os.makedirs(APPLICATION_LOG_DIR, exist_ok=True)
 os.makedirs(EXCEPTION_LOG_DIR, exist_ok=True)
-
-# Day-wise Log File
 
 today = datetime.now().strftime("%Y-%m-%d")
 
@@ -24,14 +20,10 @@ exception_log_file = os.path.join(
     f"{today}.log"
 )
 
-# Formatter
-
 formatter = logging.Formatter(
     "%(asctime)s | %(levelname)s | %(message)s",
     "%d-%m-%Y %H:%M:%S"
 )
-
-# Application Logger
 
 application_logger = logging.getLogger("ApplicationLogger")
 application_logger.setLevel(logging.INFO)
@@ -48,8 +40,6 @@ if not application_logger.handlers:
 
     application_logger.addHandler(app_handler)
 
-# Exception Logger
-
 exception_logger = logging.getLogger("ExceptionLogger")
 exception_logger.setLevel(logging.ERROR)
 exception_logger.propagate = False
@@ -64,9 +54,6 @@ if not exception_logger.handlers:
     exception_handler.setFormatter(formatter)
 
     exception_logger.addHandler(exception_handler)
-
-
-# ================= Logging Functions ================= #
 
 def log_application(message):
     application_logger.info(message)

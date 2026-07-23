@@ -1,54 +1,39 @@
 # 🏥 Healthcare Management System
 
-A console-based Healthcare Management System developed using **Python** and **MySQL**.
-
-This project helps hospitals and clinics manage patients, doctors, appointments, billing, and reports efficiently.
+A console-based **Healthcare Management System** developed using **Python** and **MySQL**. The project follows a modular architecture and implements CRUD operations, input validation, exception handling, logging, and report generation for efficient healthcare management.
 
 ---
 
-# Features
+## 📌 Features
 
-## Patient Management
-
+### 👨‍⚕️ Patient Management
 - Register Patient
 - View All Patients
 - Search Patient
 - Update Patient
 - Delete Patient
 
----
-
-## Doctor Management
-
+### 🩺 Doctor Management
 - Add Doctor
 - View All Doctors
 - Search Doctor
 - Update Doctor
 - Delete Doctor
 
----
-
-## Appointment Management
-
+### 📅 Appointment Management
 - Book Appointment
 - View All Appointments
 - Search Appointment
 - Update Appointment Status
 - Cancel Appointment
 
----
-
-## Billing Management
-
+### 💳 Billing Management
 - Generate Bill
-- View Bills
+- View All Bills
 - Search Bill
 - Update Payment Status
 
----
-
-## Reports
-
+### 📊 Reports
 - Patient Report
 - Doctor Report
 - Appointment Report
@@ -56,157 +41,102 @@ This project helps hospitals and clinics manage patients, doctors, appointments,
 
 ---
 
-# Technologies Used
+## 🛠️ Technologies Used
 
 - Python 3.x
 - MySQL
 - mysql-connector-python
 - Object-Oriented Programming
+- Exception Handling
+- Logging
 - Modular Programming
 
 ---
 
-# Project Structure
+## 📂 Project Structure
 
 ```
 HealthcareManagementSystem/
-│
-├── healthcare_db.sql
-├── main.py
-├── database_connection.py
-├── validation_module.py
-├── logger_module.py
-├── test_connection.py
-├── patient_module.py
-├── doctor_module.py
-├── appointment_module.py
-├── billing_module.py
-├── report_module.py
-├── README.md
-├── requirements.txt
-│
+
+│── main.py
+│── database_connection.py
+│── validation_module.py
+│── logger_module.py
+│── patient_module.py
+│── doctor_module.py
+│── appointment_module.py
+│── billing_module.py
+│── report_module.py
+│── healthcare_db.sql
+│── requirements.txt
+│── README.md
+
 └── logs/
-    └── healthcare.log
+    ├── application_logs/
+    └── exception_logs/
 ```
 
 ---
 
-# Database Tables
+## 🗄️ Database Tables
 
-## patients
-
-- patient_id
-- patient_name
-- age
-- gender
-- contact_number
-- city
-- blood_group
-- disease
+- Patients
+- Doctors
+- Appointments
+- Bills
 
 ---
 
-## doctors
+## 🚀 Installation
 
-- doctor_id
-- doctor_name
-- department
-- consultation_fee
-- availability_status
-
----
-
-## appointments
-
-- appointment_id
-- patient_id
-- doctor_id
-- appointment_date
-- appointment_time
-- status
-
----
-
-## bills
-
-- bill_id
-- appointment_id
-- patient_id
-- consultation_fee
-- medicine_charge
-- laboratory_charge
-- other_charge
-- gross_amount
-- discount
-- total_amount
-- payment_status
-
----
-
-# Installation
-
-## Clone Repository
+### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/HealthcareManagementSystem.git
+git clone https://github.com/revanthsaibomma/HealthcareManagementSystem_ExceptionHandling.git
 ```
 
----
-
-## Go to Project Folder
+### Navigate to Project
 
 ```bash
-cd HealthcareManagementSystem
+cd HealthcareManagementSystem_ExceptionHandling
 ```
 
----
-
-## Install Dependencies
+### Install Required Package
 
 ```bash
-pip install -r requirements.txt
+pip install mysql-connector-python
 ```
 
----
+### Create Database
 
-## Create Database
-
-Open MySQL Workbench and execute:
+Import
 
 ```
 healthcare_db.sql
 ```
 
----
+into MySQL.
 
-## Configure Database
+### Configure Database
 
-Open
+Update your MySQL credentials in
 
 ```
 database_connection.py
 ```
 
-Update:
+Example
 
 ```python
-HOST = "localhost"
-USER = "root"
-PASSWORD = "your_password"
-DATABASE = "healthcare_db"
+host="localhost"
+user="root"
+password="Revanth@123"
+database="healthcare_db"
 ```
 
 ---
 
-## Test Connection
-
-```bash
-python test_connection.py
-```
-
----
-
-## Run Project
+## ▶️ Run Project
 
 ```bash
 python main.py
@@ -214,52 +144,53 @@ python main.py
 
 ---
 
-# Menu
+## 🔐 Validation
 
-```
-1. Register Patient
-2. View Patients
-3. Search Patient
-4. Update Patient
-5. Delete Patient
+The project validates:
 
-6. Add Doctor
-7. View Doctors
-8. Search Doctor
-9. Update Doctor
-10. Delete Doctor
-
-11. Book Appointment
-12. View Appointments
-13. Search Appointment
-14. Update Appointment Status
-15. Cancel Appointment
-
-16. Generate Bill
-17. View Bills
-18. Search Bill
-19. Update Payment Status
-
-20. Reports
-21. Exit
-```
+- Patient ID
+- Doctor ID
+- Appointment ID
+- Bill ID
+- Name
+- Age
+- Gender
+- Contact Number
+- Blood Group
+- Department
+- Consultation Fee
+- Appointment Date
+- Appointment Time
+- Payment Status
 
 ---
 
-# Python Modules
+## ⚠️ Exception Handling
 
-- database_connection.py
-- validation_module.py
-- logger_module.py
-- patient_module.py
-- doctor_module.py
-- appointment_module.py
-- billing_module.py
-- report_module.py
+The project handles:
+
+- Validation Errors
+- Database Errors
+- Duplicate Records
+- Invalid Input
+- Unexpected Exceptions
 
 ---
 
-# Reports
+## 📝 Logging
+
+The application maintains separate logs for:
+
+- Application Logs
+- Exception Logs
+
+Logs are automatically created inside the **logs/** folder.
+
+---
+
+## 📊 Reports
+
+The application generates:
 
 ### Patient Report
 
@@ -270,63 +201,60 @@ python main.py
 - Disease Statistics
 - Average Age
 
----
-
 ### Doctor Report
 
-- Department-wise Doctors
+- Total Doctors
+- Department Statistics
 - Availability Status
 - Consultation Fee Statistics
-
----
 
 ### Appointment Report
 
 - Total Appointments
-- Status-wise Appointments
-- Doctor-wise Appointments
-- Patient-wise Appointments
-- Most Busy Doctor
-
----
+- Status Statistics
+- Date-wise Report
+- Doctor-wise Report
+- Patient-wise Report
 
 ### Billing Report
 
-- Total Revenue
-- Paid Bills
-- Pending Bills
-- Average Bill Amount
+- Total Bills
+- Revenue
+- Paid Amount
+- Pending Amount
 - Highest Bill
 - Lowest Bill
+- Average Bill
 
 ---
 
-# Logging
+## 📷 Sample Modules
 
-Every important operation is recorded automatically in
-
-```
-logs/healthcare.log
-```
-
----
-
-# Exception Handling
-
-The project handles:
-
-- Validation Errors
-- Database Errors
-- Unexpected Errors
+- Patient Management
+- Doctor Management
+- Appointment Management
+- Billing Management
+- Report Generation
 
 ---
 
-# Author
+## 🎯 Future Enhancements
+
+- GUI using Tkinter
+- Streamlit Web Application
+- Email Notifications
+- SMS Appointment Reminder
+- PDF Bill Generation
+- Dashboard and Charts
+
+---
+
+## 👨‍💻 Author
 
 **Revanth Sai Bomma**
 
 ---
 
-# License
+## 📜 License
 
-This project is developed for educational purposes.
+This project is developed for educational and learning purposes.
