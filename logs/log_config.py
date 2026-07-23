@@ -2,15 +2,21 @@ import logging
 import os
 from datetime import datetime
 
+# ----------------------------------------------------
 # Create Log Directories
+# ----------------------------------------------------
 
-APPLICATION_LOG_DIR = "logs/application_logs"
-EXCEPTION_LOG_DIR = "logs/exception_logs"
+BASE_LOG_DIR = "logs"
+
+APPLICATION_LOG_DIR = os.path.join(BASE_LOG_DIR, "application_logs")
+EXCEPTION_LOG_DIR = os.path.join(BASE_LOG_DIR, "exception_logs")
 
 os.makedirs(APPLICATION_LOG_DIR, exist_ok=True)
 os.makedirs(EXCEPTION_LOG_DIR, exist_ok=True)
 
-# Day-wise Log File
+# ----------------------------------------------------
+# Today's Log File
+# ----------------------------------------------------
 
 today = datetime.now().strftime("%Y-%m-%d")
 
@@ -24,14 +30,18 @@ exception_log_file = os.path.join(
     f"{today}.log"
 )
 
+# ----------------------------------------------------
 # Formatter
+# ----------------------------------------------------
 
 formatter = logging.Formatter(
     "%(asctime)s | %(levelname)s | %(message)s",
     "%d-%m-%Y %H:%M:%S"
 )
 
+# ----------------------------------------------------
 # Application Logger
+# ----------------------------------------------------
 
 application_logger = logging.getLogger("ApplicationLogger")
 application_logger.setLevel(logging.INFO)
@@ -48,7 +58,9 @@ if not application_logger.handlers:
 
     application_logger.addHandler(app_handler)
 
+# ----------------------------------------------------
 # Exception Logger
+# ----------------------------------------------------
 
 exception_logger = logging.getLogger("ExceptionLogger")
 exception_logger.setLevel(logging.ERROR)
@@ -64,25 +76,3 @@ if not exception_logger.handlers:
     exception_handler.setFormatter(formatter)
 
     exception_logger.addHandler(exception_handler)
-
-
-# ================= Logging Functions ================= #
-
-def log_application(message):
-    application_logger.info(message)
-
-
-def log_warning(message):
-    application_logger.warning(message)
-
-
-def log_debug(message):
-    application_logger.debug(message)
-
-
-def log_exception(message):
-    exception_logger.error(message)
-
-
-def log_critical(message):
-    exception_logger.critical(message)
