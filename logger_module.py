@@ -1,5 +1,6 @@
 import logging
 import os
+<<<<<<< HEAD
 from datetime import datetime
 
 APPLICATION_LOG_DIR = "logs/application_logs"
@@ -73,3 +74,41 @@ def log_exception(message):
 
 def log_critical(message):
     exception_logger.critical(message)
+=======
+
+# Create logs directory if it doesn't exist
+if not os.path.exists("logs"):
+    os.makedirs("logs")
+
+# Configure logging
+logging.basicConfig(
+    filename="logs/healthcare.log",
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    datefmt="%d-%m-%Y %H:%M:%S"
+)
+
+def log_info(message):
+    """Log information messages."""
+    logging.info(message)
+
+def log_warning(message):
+    """Log warning messages."""
+    logging.warning(message)
+
+def log_error(message):
+    """Log error messages."""
+    logging.error(message)
+
+def log_critical(message):
+    """Log critical messages."""
+    logging.critical(message)
+
+def log_debug(message):
+    """Log debug messages."""
+    logging.debug(message)
+
+def log_exception(message):
+    """Log exception messages."""
+    logging.exception(message)
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f

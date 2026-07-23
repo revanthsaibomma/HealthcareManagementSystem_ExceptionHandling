@@ -45,6 +45,14 @@ from report_module import (
 
 from database_connection import get_connection
 
+<<<<<<< HEAD
+=======
+
+# ---------------------------------------------------------
+# Report Menu
+# ---------------------------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 def reports_menu():
 
     while True:
@@ -76,6 +84,14 @@ def reports_menu():
         else:
             print("Invalid Choice.")
 
+<<<<<<< HEAD
+=======
+
+# ---------------------------------------------------------
+# Main Menu
+# ---------------------------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 def main():
 
     connection = get_connection()
@@ -123,9 +139,14 @@ def main():
 
         print("\nREPORTS")
         print("20. Reports")
+<<<<<<< HEAD
 
         print("\n21. Exit")
 
+=======
+        print("21. Exit")
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         choice = input("\nEnter Your Choice : ").strip()
 
         try:
@@ -204,5 +225,13 @@ def main():
         except Exception as e:
             print("\nUnexpected Error :", e)
 
+<<<<<<< HEAD
+=======
+
+# ---------------------------------------------------------
+# Driver Code
+# ---------------------------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 if __name__ == "__main__":
     main()

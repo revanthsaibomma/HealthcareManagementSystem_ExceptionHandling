@@ -6,6 +6,7 @@ Description : Patient Management Module
 """
 
 from database_connection import get_connection
+<<<<<<< HEAD
 from logger_module import (
     log_application,
     log_exception,
@@ -29,6 +30,35 @@ def display_patient(patient):
     print(f"Blood Group     : {patient[6]}")
     print(f"Disease         : {patient[7]}")
     print("-" * 80)
+=======
+from logger_module import log_info, log_error
+from validation_module import *
+
+import mysql.connector
+
+
+# ---------------------------------------------------------
+# Display Patient Details
+# ---------------------------------------------------------
+
+def display_patient(patient):
+
+    print("-" * 80)
+    print(f"Patient ID      : {patient[0]}")
+    print(f"Patient Name    : {patient[1]}")
+    print(f"Age             : {patient[2]}")
+    print(f"Gender          : {patient[3]}")
+    print(f"Contact Number  : {patient[4]}")
+    print(f"City            : {patient[5]}")
+    print(f"Blood Group     : {patient[6]}")
+    print(f"Disease         : {patient[7]}")
+    print("-" * 80)
+
+
+# ---------------------------------------------------------
+# Register Patient
+# ---------------------------------------------------------
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
 def register_patient():
 
@@ -56,7 +86,11 @@ def register_patient():
         if cursor.fetchone():
 
             print("\nPatient ID already exists.")
+<<<<<<< HEAD
             log_exception(f"Duplicate Patient ID : {patient_id}")
+=======
+            log_error(f"Duplicate Patient ID : {patient_id}")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
             return
 
         patient_name = input("Enter Patient Name : ").strip()
@@ -79,7 +113,11 @@ def register_patient():
         if cursor.fetchone():
 
             print("\nContact Number already exists.")
+<<<<<<< HEAD
             log_exception(f"Duplicate Contact Number : {contact_number}")
+=======
+            log_error(f"Duplicate Contact Number : {contact_number}")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
             return
 
         city = input("Enter City : ").strip()
@@ -126,27 +164,50 @@ def register_patient():
 
         print("\nPatient Registered Successfully.")
 
+<<<<<<< HEAD
         log_application(f"Patient Registered : {patient_id}")
+=======
+        log_info(f"Patient Registered : {patient_id}")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except ValueError as e:
 
         print("\nValidation Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
         cursor.close()
         connection.close()
+<<<<<<< HEAD
+=======
+
+# ---------------------------------------------------------
+# View All Patients
+# ---------------------------------------------------------
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
 def view_all_patients():
 
@@ -187,22 +248,42 @@ def view_all_patients():
 
         print(f"\nTotal Patients : {len(patients)}")
 
+<<<<<<< HEAD
         log_application("Viewed All Patients")
+=======
+        log_info("Viewed All Patients")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
         cursor.close()
         connection.close()
+<<<<<<< HEAD
+=======
+
+
+# ---------------------------------------------------------
+# Search Patient
+# ---------------------------------------------------------
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
 def search_patient():
 
@@ -306,22 +387,40 @@ def search_patient():
 
         print(f"\nTotal Records Found : {len(patients)}")
 
+<<<<<<< HEAD
         log_application("Patient Search Performed")
+=======
+        log_info("Patient Search Performed")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
         cursor.close()
         connection.close()
+<<<<<<< HEAD
+=======
+# ---------------------------------------------------------
+# Update Patient
+# ---------------------------------------------------------
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
 def update_patient():
 
@@ -424,27 +523,51 @@ def update_patient():
 
         print("\nPatient Updated Successfully.")
 
+<<<<<<< HEAD
         log_application(f"Patient Updated : {patient_id}")
+=======
+        log_info(f"Patient Updated : {patient_id}")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except ValueError as e:
 
         print("\nValidation Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
         cursor.close()
         connection.close()
+<<<<<<< HEAD
+=======
+
+
+# ---------------------------------------------------------
+# Delete Patient
+# ---------------------------------------------------------
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
 def delete_patient():
 
@@ -496,7 +619,11 @@ def delete_patient():
             print("\nCannot Delete Patient.")
             print("Scheduled Appointment Exists.")
 
+<<<<<<< HEAD
             log_exception(
+=======
+            log_error(
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
                 f"Delete Failed : Scheduled Appointment Exists ({patient_id})"
             )
 
@@ -518,22 +645,38 @@ def delete_patient():
 
         print("\nPatient Deleted Successfully.")
 
+<<<<<<< HEAD
         log_application(f"Patient Deleted : {patient_id}")
+=======
+        log_info(f"Patient Deleted : {patient_id}")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except ValueError as e:
 
         print("\nValidation Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 

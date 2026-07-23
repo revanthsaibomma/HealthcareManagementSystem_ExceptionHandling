@@ -6,6 +6,7 @@ Description : Report Management Module
 """
 
 from database_connection import get_connection
+<<<<<<< HEAD
 from logger_module import (
     log_application,
     log_exception,
@@ -16,6 +17,17 @@ from logger_module import (
 
 import mysql.connector
 
+=======
+from logger_module import log_info, log_error
+
+import mysql.connector
+
+
+# ---------------------------------------------------------
+# Patient Report
+# ---------------------------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 def patient_report():
 
     connection = get_connection()
@@ -31,6 +43,7 @@ def patient_report():
 
         print("\n========== PATIENT REPORT ==========\n")
 
+<<<<<<< HEAD
         cursor.execute("SELECT COUNT(*) FROM patients")
 
         total_patients = cursor.fetchone()[0]
@@ -133,23 +146,171 @@ def patient_report():
 
         oldest = cursor.fetchone()
 
+=======
+        # -----------------------------------------
+        # Total Patients
+        # -----------------------------------------
+
+        cursor.execute("SELECT COUNT(*) FROM patients")
+
+        total_patients = cursor.fetchone()[0]
+
+        print(f"Total Patients : {total_patients}")
+
+        # -----------------------------------------
+        # Gender Wise Count
+        # -----------------------------------------
+
+        print("\n----- Gender Wise Patients -----")
+
+        cursor.execute("""
+            SELECT gender,
+                   COUNT(*)
+            FROM patients
+            GROUP BY gender
+        """)
+
+        gender_data = cursor.fetchall()
+
+        for gender in gender_data:
+
+            print(f"{gender[0]} : {gender[1]}")
+
+        # -----------------------------------------
+        # City Wise Count
+        # -----------------------------------------
+
+        print("\n----- City Wise Patients -----")
+
+        cursor.execute("""
+            SELECT city,
+                   COUNT(*)
+            FROM patients
+            GROUP BY city
+            ORDER BY COUNT(*) DESC
+        """)
+
+        city_data = cursor.fetchall()
+
+        for city in city_data:
+
+            print(f"{city[0]} : {city[1]}")
+
+        # -----------------------------------------
+        # Blood Group Count
+        # -----------------------------------------
+
+        print("\n----- Blood Group Statistics -----")
+
+        cursor.execute("""
+            SELECT blood_group,
+                   COUNT(*)
+            FROM patients
+            GROUP BY blood_group
+            ORDER BY blood_group
+        """)
+
+        blood_data = cursor.fetchall()
+
+        for blood in blood_data:
+
+            print(f"{blood[0]} : {blood[1]}")
+
+        # -----------------------------------------
+        # Disease Wise Count
+        # -----------------------------------------
+
+        print("\n----- Disease Statistics -----")
+
+        cursor.execute("""
+            SELECT disease,
+                   COUNT(*)
+            FROM patients
+            GROUP BY disease
+            ORDER BY COUNT(*) DESC
+        """)
+
+        disease_data = cursor.fetchall()
+
+        for disease in disease_data:
+
+            print(f"{disease[0]} : {disease[1]}")
+
+        # -----------------------------------------
+        # Average Age
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT ROUND(AVG(age),2)
+            FROM patients
+        """)
+
+        average_age = cursor.fetchone()[0]
+
+        print(f"\nAverage Age : {average_age}")
+
+        # -----------------------------------------
+        # Youngest Patient
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT patient_name,
+                   age
+            FROM patients
+            ORDER BY age ASC
+            LIMIT 1
+        """)
+
+        youngest = cursor.fetchone()
+
+        if youngest:
+
+            print(f"\nYoungest Patient : {youngest[0]} ({youngest[1]} Years)")
+
+        # -----------------------------------------
+        # Oldest Patient
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT patient_name,
+                   age
+            FROM patients
+            ORDER BY age DESC
+            LIMIT 1
+        """)
+
+        oldest = cursor.fetchone()
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         if oldest:
 
             print(f"Oldest Patient : {oldest[0]} ({oldest[1]} Years)")
 
+<<<<<<< HEAD
         log_application("Patient Report Generated")
+=======
+        log_info("Patient Report Generated")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
 
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
 
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
@@ -157,6 +318,13 @@ def patient_report():
 
         connection.close()
 
+<<<<<<< HEAD
+=======
+# ---------------------------------------------------------
+# Doctor Report
+# ---------------------------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 def doctor_report():
 
     connection = get_connection()
@@ -172,6 +340,7 @@ def doctor_report():
 
         print("\n========== DOCTOR REPORT ==========\n")
 
+<<<<<<< HEAD
         cursor.execute("SELECT COUNT(*) FROM doctors")
 
         total_doctors = cursor.fetchone()[0]
@@ -180,6 +349,24 @@ def doctor_report():
 
         print("\n----- Department Wise Doctors -----")
 
+=======
+        # -----------------------------------------
+        # Total Doctors
+        # -----------------------------------------
+
+        cursor.execute("SELECT COUNT(*) FROM doctors")
+
+        total_doctors = cursor.fetchone()[0]
+
+        print(f"Total Doctors : {total_doctors}")
+
+        # -----------------------------------------
+        # Department Wise Count
+        # -----------------------------------------
+
+        print("\n----- Department Wise Doctors -----")
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT department,
                    COUNT(*)
@@ -194,6 +381,13 @@ def doctor_report():
 
             print(f"{department[0]} : {department[1]}")
 
+<<<<<<< HEAD
+=======
+        # -----------------------------------------
+        # Availability Status
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         print("\n----- Availability Status -----")
 
         cursor.execute("""
@@ -209,6 +403,13 @@ def doctor_report():
 
             print(f"{status[0]} : {status[1]}")
 
+<<<<<<< HEAD
+=======
+        # -----------------------------------------
+        # Average Consultation Fee
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT ROUND(AVG(consultation_fee),2)
             FROM doctors
@@ -218,6 +419,13 @@ def doctor_report():
 
         print(f"\nAverage Consultation Fee : ₹{average_fee}")
 
+<<<<<<< HEAD
+=======
+        # -----------------------------------------
+        # Highest Consultation Fee
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT
                 doctor_name,
@@ -236,6 +444,7 @@ def doctor_report():
                 f"{highest_fee[0]} (₹{highest_fee[1]})"
             )
 
+<<<<<<< HEAD
         cursor.execute("""
             SELECT
                 doctor_name,
@@ -285,12 +494,75 @@ def doctor_report():
         print("\nDatabase Error :", e)
 
         log_exception(str(e))
+=======
+        # -----------------------------------------
+        # Lowest Consultation Fee
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT
+                doctor_name,
+                consultation_fee
+            FROM doctors
+            ORDER BY consultation_fee ASC
+            LIMIT 1
+        """)
+
+        lowest_fee = cursor.fetchone()
+
+        if lowest_fee:
+
+            print(
+                f"Lowest Consultation Fee : "
+                f"{lowest_fee[0]} (₹{lowest_fee[1]})"
+            )
+
+        # -----------------------------------------
+        # Doctors with Highest Number of Appointments
+        # -----------------------------------------
+
+        print("\n----- Appointment Statistics -----")
+
+        cursor.execute("""
+            SELECT
+                d.doctor_name,
+                COUNT(a.appointment_id) AS total_appointments
+            FROM doctors d
+            LEFT JOIN appointments a
+            ON d.doctor_id = a.doctor_id
+            GROUP BY d.doctor_id, d.doctor_name
+            ORDER BY total_appointments DESC
+        """)
+
+        appointment_stats = cursor.fetchall()
+
+        if appointment_stats:
+
+            for doctor in appointment_stats:
+
+                print(
+                    f"{doctor[0]} : "
+                    f"{doctor[1]} Appointment(s)"
+                )
+
+        log_info("Doctor Report Generated")
+
+    except mysql.connector.Error as e:
+
+        print("\nDatabase Error :", e)
+
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
 
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
@@ -298,6 +570,13 @@ def doctor_report():
 
         connection.close()
 
+<<<<<<< HEAD
+=======
+# ---------------------------------------------------------
+# Appointment Report
+# ---------------------------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 def appointment_report():
 
     connection = get_connection()
@@ -313,6 +592,7 @@ def appointment_report():
 
         print("\n========== APPOINTMENT REPORT ==========\n")
 
+<<<<<<< HEAD
         cursor.execute("SELECT COUNT(*) FROM appointments")
 
         total_appointments = cursor.fetchone()[0]
@@ -376,6 +656,91 @@ def appointment_report():
 
         print("\n----- Patient Wise Appointments -----")
 
+=======
+        # -----------------------------------------
+        # Total Appointments
+        # -----------------------------------------
+
+        cursor.execute("SELECT COUNT(*) FROM appointments")
+
+        total_appointments = cursor.fetchone()[0]
+
+        print(f"Total Appointments : {total_appointments}")
+
+        # -----------------------------------------
+        # Status Wise Count
+        # -----------------------------------------
+
+        print("\n----- Appointment Status -----")
+
+        cursor.execute("""
+            SELECT
+                status,
+                COUNT(*)
+            FROM appointments
+            GROUP BY status
+        """)
+
+        status_data = cursor.fetchall()
+
+        for status in status_data:
+
+            print(f"{status[0]} : {status[1]}")
+
+        # -----------------------------------------
+        # Date Wise Appointment Count
+        # -----------------------------------------
+
+        print("\n----- Date Wise Appointments -----")
+
+        cursor.execute("""
+            SELECT
+                appointment_date,
+                COUNT(*)
+            FROM appointments
+            GROUP BY appointment_date
+            ORDER BY appointment_date
+        """)
+
+        date_data = cursor.fetchall()
+
+        if date_data:
+
+            for row in date_data:
+
+                print(f"{row[0]} : {row[1]} Appointment(s)")
+
+        # -----------------------------------------
+        # Doctor Wise Appointments
+        # -----------------------------------------
+
+        print("\n----- Doctor Wise Appointments -----")
+
+        cursor.execute("""
+            SELECT
+                d.doctor_name,
+                COUNT(a.appointment_id)
+            FROM doctors d
+            LEFT JOIN appointments a
+            ON d.doctor_id = a.doctor_id
+            GROUP BY d.doctor_id,
+                     d.doctor_name
+            ORDER BY COUNT(a.appointment_id) DESC
+        """)
+
+        doctor_data = cursor.fetchall()
+
+        for doctor in doctor_data:
+
+            print(f"{doctor[0]} : {doctor[1]} Appointment(s)")
+
+        # -----------------------------------------
+        # Patient Wise Appointments
+        # -----------------------------------------
+
+        print("\n----- Patient Wise Appointments -----")
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT
                 p.patient_name,
@@ -394,6 +759,13 @@ def appointment_report():
 
             print(f"{patient[0]} : {patient[1]} Appointment(s)")
 
+<<<<<<< HEAD
+=======
+        # -----------------------------------------
+        # Most Busy Doctor
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT
                 d.doctor_name,
@@ -414,6 +786,13 @@ def appointment_report():
             print("\n----- Most Busy Doctor -----")
             print(f"{busy_doctor[0]} ({busy_doctor[1]} Appointments)")
 
+<<<<<<< HEAD
+=======
+        # -----------------------------------------
+        # Most Frequent Patient
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT
                 p.patient_name,
@@ -434,19 +813,31 @@ def appointment_report():
             print("\n----- Most Frequent Patient -----")
             print(f"{frequent_patient[0]} ({frequent_patient[1]} Appointments)")
 
+<<<<<<< HEAD
         log_application("Appointment Report Generated")
+=======
+        log_info("Appointment Report Generated")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
 
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
 
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
@@ -454,6 +845,13 @@ def appointment_report():
 
         connection.close()
 
+<<<<<<< HEAD
+=======
+# ---------------------------------------------------------
+# Billing Report
+# ---------------------------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 def billing_report():
 
     connection = get_connection()
@@ -469,6 +867,7 @@ def billing_report():
 
         print("\n========== BILLING REPORT ==========\n")
 
+<<<<<<< HEAD
         cursor.execute("""
             SELECT COUNT(*)
             FROM bills
@@ -496,6 +895,60 @@ def billing_report():
         paid_amount = float(cursor.fetchone()[0])
 
         print(f"Paid Amount : ₹{paid_amount:.2f}")
+=======
+        # -----------------------------------------
+        # Total Bills
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT COUNT(*)
+            FROM bills
+        """)
+
+        total_bills = cursor.fetchone()[0]
+
+        print(f"Total Bills : {total_bills}")
+
+        # -----------------------------------------
+        # Total Revenue
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT IFNULL(SUM(total_amount),0)
+            FROM bills
+        """)
+
+        total_revenue = float(cursor.fetchone()[0])
+
+        print(f"Total Revenue : ₹{total_revenue:.2f}")
+
+        # -----------------------------------------
+        # Total Paid Amount
+        # -----------------------------------------
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
+
+        cursor.execute("""
+            SELECT IFNULL(SUM(total_amount),0)
+            FROM bills
+<<<<<<< HEAD
+            WHERE payment_status='Pending'
+        """)
+
+        pending_amount = float(cursor.fetchone()[0])
+
+        print(f"Pending Amount : ₹{pending_amount:.2f}")
+
+=======
+            WHERE payment_status='Paid'
+        """)
+
+        paid_amount = float(cursor.fetchone()[0])
+
+        print(f"Paid Amount : ₹{paid_amount:.2f}")
+
+        # -----------------------------------------
+        # Total Pending Amount
+        # -----------------------------------------
 
         cursor.execute("""
             SELECT IFNULL(SUM(total_amount),0)
@@ -507,6 +960,11 @@ def billing_report():
 
         print(f"Pending Amount : ₹{pending_amount:.2f}")
 
+        # -----------------------------------------
+        # Payment Status Statistics
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         print("\n----- Payment Status -----")
 
         cursor.execute("""
@@ -523,6 +981,13 @@ def billing_report():
 
             print(f"{row[0]} : {row[1]}")
 
+<<<<<<< HEAD
+=======
+        # -----------------------------------------
+        # Highest Bill
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT
                 bill_id,
@@ -541,6 +1006,7 @@ def billing_report():
                 f"{highest_bill[0]} (₹{highest_bill[1]:.2f})"
             )
 
+<<<<<<< HEAD
         cursor.execute("""
             SELECT
                 bill_id,
@@ -589,6 +1055,68 @@ def billing_report():
 
         patient_revenue = cursor.fetchall()
 
+=======
+        # -----------------------------------------
+        # Lowest Bill
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT
+                bill_id,
+                total_amount
+            FROM bills
+            ORDER BY total_amount ASC
+            LIMIT 1
+        """)
+
+        lowest_bill = cursor.fetchone()
+
+        if lowest_bill:
+
+            print(
+                f"Lowest Bill : "
+                f"{lowest_bill[0]} (₹{lowest_bill[1]:.2f})"
+            )
+
+        # -----------------------------------------
+        # Average Bill Amount
+        # -----------------------------------------
+
+        cursor.execute("""
+            SELECT ROUND(AVG(total_amount),2)
+            FROM bills
+        """)
+
+        average_bill = cursor.fetchone()[0]
+
+        if average_bill is None:
+            average_bill = 0
+
+        print(f"Average Bill Amount : ₹{average_bill}")
+
+        # -----------------------------------------
+        # Patient-wise Revenue
+        # -----------------------------------------
+
+        print("\n----- Patient-wise Revenue -----")
+
+        cursor.execute("""
+            SELECT
+                p.patient_name,
+                IFNULL(SUM(b.total_amount),0)
+            FROM patients p
+            LEFT JOIN bills b
+            ON p.patient_id = b.patient_id
+            GROUP BY
+                p.patient_id,
+                p.patient_name
+            ORDER BY
+                SUM(b.total_amount) DESC
+        """)
+
+        patient_revenue = cursor.fetchall()
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         for patient in patient_revenue:
 
             revenue = patient[1]
@@ -598,6 +1126,13 @@ def billing_report():
 
             print(f"{patient[0]} : ₹{float(revenue):.2f}")
 
+<<<<<<< HEAD
+=======
+        # -----------------------------------------
+        # Top Revenue Patient
+        # -----------------------------------------
+
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
         cursor.execute("""
             SELECT
                 p.patient_name,
@@ -622,19 +1157,31 @@ def billing_report():
                 f"(₹{float(top_patient[1]):.2f})"
             )
 
+<<<<<<< HEAD
         log_application("Billing Report Generated")
+=======
+        log_info("Billing Report Generated")
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except mysql.connector.Error as e:
 
         print("\nDatabase Error :", e)
 
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     except Exception as e:
 
         print("\nUnexpected Error :", e)
 
+<<<<<<< HEAD
         log_exception(str(e))
+=======
+        log_error(str(e))
+>>>>>>> db9a5911a3f9d82b30a94cf078ccae0b8f3dd91f
 
     finally:
 
